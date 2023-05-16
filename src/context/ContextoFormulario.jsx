@@ -3,7 +3,10 @@
  * Contiene tanto el contexto como el provider para poder usarlo.
  * 
  * También incluye los métodos para poder usar el `dispatch` de una manera conveniente.
- * ![alt text](https://)
+ * 
+ * #### Utilización en el proyecto
+ * Aquí vemos un diagrama de la forma que estamos usando este contexto.
+ * ![diagrama formcontext](https://github.com/melognator/project-ash/blob/main/public/formcontext.png?raw=true)
  * @module ContextoFormulario
  */
 
