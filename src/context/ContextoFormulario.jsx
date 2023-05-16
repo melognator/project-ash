@@ -3,6 +3,7 @@
  * Contiene tanto el contexto como el provider para poder usarlo.
  * 
  * También incluye los métodos para poder usar el `dispatch` de una manera conveniente.
+ * ![alt text](https://)
  * @module ContextoFormulario
  */
 
@@ -61,6 +62,7 @@ export const updatePokemon = (name, value) => {
  * Es el proveedor del contexto del formulario.
  * 
  * Es necesario para poder usar FormContext.
+ * 
  * @param {object} props 
  * @param {object} props.children
  * @example
