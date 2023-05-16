@@ -3,7 +3,7 @@
 */
 
 import React, { useContext } from "react";
-import { FormContext } from "../../../../project-ash/src/context/ContextoFormulario";
+import { FormContext } from "../../context/ContextoFormulario";
 
 /**
  * Muestra los datos del entrenador y pokemon ingresados en el formulario.

@@ -3,7 +3,7 @@
  */
 
 import React, { useContext, useState } from "react";
-import { FormContext, updateEntrenador, updatePokemon } from "../../../../project-ash/src/context/ContextoFormulario";
+import { FormContext, updateEntrenador, updatePokemon } from "../../context/ContextoFormulario";
 
 /**
  * Componente para renderizar un contenedor con un texto descriptivo y un input
