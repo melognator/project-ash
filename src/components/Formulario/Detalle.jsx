@@ -20,30 +20,32 @@ const Detalle = () => {
             <div className={styles.header}>
                 <h3>Vista Previa de la Solicitud</h3>
             </div>
-            <section className="datos-cliente">
-                <h4>Datos del Entrenador</h4>
-                <div className="fila">
-                    <p>Nombre: {state.entrenador.nombre}</p>
-                    <p>Apellido: {state.entrenador.apellido}</p>
-                    <p>Email: {state.entrenador.email}</p>
-                </div>
-            </section>
-            <section className="datos-cliente">
-                <h4>Datos del Pokémon</h4>
-                <div className="fila">
-                    <p>Nombre: {state.pokemon.nombre}</p>
-                    <p>Tipo: {state.pokemon.tipo}</p>
-                    <p>Elemento: {state.pokemon.elemento}</p>
-                    <p>Altura: {state.pokemon.altura}</p>
-                    <p>Edad: {state.pokemon.edad}</p>
-                </div>
-            </section>
-            <button
-                className="boton-enviar"
-                onClick={() => alert("Solicitud enviada :)")}
-            >
-                Enviar Solicitud
-            </button>
+            <div className={styles.body}>
+                <section className="datos-cliente">
+                    <h4>Datos del Entrenador</h4>
+                    <div className="fila">
+                        <p>Nombre: <i>{state.entrenador.nombre}</i></p>
+                        <p>Apellido: <i>{state.entrenador.apellido}</i></p>
+                        <p>Email: <i>{state.entrenador.email}</i></p>
+                    </div>
+                </section>
+                <section className="datos-cliente">
+                    <h4>Datos del Pokémon</h4>
+                    <div className="fila">
+                        <p>Nombre: <i>{state.pokemon.nombre}</i></p>
+                        <p>Tipo: <i>{state.pokemon.tipo}</i></p>
+                        {/* <p>Elemento: {state.pokemon.elemento}</p> */}
+                        <p>Altura: <i>{state.pokemon.altura}</i></p>
+                        <p>Edad: <i>{state.pokemon.edad}</i></p>
+                    </div>
+                </section>
+                <button
+                    className="button primary-button"
+                    onClick={() => alert("Solicitud enviada :)")}
+                >
+                    Enviar Solicitud
+                </button>
+            </div>
         </div>
     );
 };

@@ -41,6 +41,7 @@ const Input = ({ name, label, type = "text" }) => {
         <div className="input-contenedor">
             <label htmlFor={name}>{label}</label>
             <input
+                autoComplete="off"
                 type={type}
                 value={value}
                 name={name}
