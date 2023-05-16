@@ -18,7 +18,7 @@ const Detalle = () => {
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        alert("Solicitud enviada :)")
+        alert("Enviado. Pronto procesaremos su solicitud :)")
         navigate("/")
     }
 
