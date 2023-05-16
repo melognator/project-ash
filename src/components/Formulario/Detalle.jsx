@@ -11,9 +11,16 @@
 import { useContext } from "react";
 import { FormContext } from "../../context/ContextoFormulario";
 import styles from "./Detalle.module.css"
+import { useNavigate } from "react-router-dom";
 
 const Detalle = () => {
     const { state } = useContext(FormContext)
+    const navigate = useNavigate()
+
+    const handleSubmit = () => {
+        alert("Solicitud enviada :)")
+        navigate("/")
+    }
 
     return (
         <div className={styles.formdetails}>
@@ -41,7 +48,7 @@ const Detalle = () => {
                 </section>
                 <button
                     className="button primary-button"
-                    onClick={() => alert("Solicitud enviada :)")}
+                    onClick={handleSubmit}
                 >
                     Enviar Solicitud
                 </button>
