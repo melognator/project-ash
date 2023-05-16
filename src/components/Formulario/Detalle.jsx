@@ -10,13 +10,14 @@
 
 import React, { useContext } from "react";
 import { FormContext } from "../../context/ContextoFormulario";
+import styles from "./Detalle.module.css"
 
 const Detalle = () => {
     const { state } = useContext(FormContext)
 
     return (
-        <div className="detalle-formulario">
-            <div className="encabezado">
+        <div className={styles.formdetails}>
+            <div className={styles.header}>
                 <h3>Vista Previa de la Solicitud</h3>
             </div>
             <section className="datos-cliente">

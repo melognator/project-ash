@@ -7,20 +7,9 @@
   font-style: normal;
 }
 
-
-body {
-  background-color: whitesmoke;
-  font-family: "Raleway", sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-}
-
 .App {
   text-align: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 a {
@@ -76,8 +65,8 @@ h1 {
     font-family: 'Pokemon', sans-serif;
     font-size: 3rem;
     color: whitesmoke;
-    text-shadow: 5px 5px black;
-    letter-spacing: 4px;
+    text-shadow: 0.25rem 0.25rem black;
+    letter-spacing: 0.25rem;
     font-weight: 400;
 }
 
@@ -143,75 +132,20 @@ h1 {
     }
 }
 
-
-.formulario-ingreso {
-  color: #ed5564;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  padding-bottom: 3rem;
-  margin-top: 2rem;
-}
-
 .input-contenedor {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 2rem;
-  width: 100%;
-}
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    width: 100%;
+  }
+  
 .input-contenedor input {
-  padding: 1rem;
-  width: 300px;
-  border-radius: 10px;
-  border-style: solid;
-  margin-left: 1rem;
-}
-
-.formulario-ingreso .cuerpo-formulario {
-  display: flex;
-  flex-direction: row;
-  height: 90%;
-}
-
-.formulario-ingreso h3 {
-  width: 100%;
-  padding: 1rem;
-}
-
-.detalle-formulario {
-  width: 70%;
-  border: 1px solid darkgray;
-  margin: 0 3rem;
-  border-radius: 6px;
-  box-shadow: 5px 5px lightgray;
-}
-
-.detalle-formulario .encabezado {
-  max-width: 100%;
-  padding: 0.5rem;
-  background-color: #ed5564;
-  color: whitesmoke;
-}
-
-.cuerpo-formulario .inputs {
-  width: 40%;
-  margin-left: 2rem;
-}
-
-.nombre-seccion {
-  text-align: left;
-  margin-top: 2rem;
-  color: blue;
-  display: flex;
-  align-items: center;
-}
-
-.nombre-seccion img {
-  width: 50px;
-  margin-right: 1rem;
+    padding: 1rem;
+    width: 300px;
+    border-radius: 10px;
+    border-style: solid;
+    margin-left: 1rem;
 }
 
 .datos-cliente .fila {
@@ -241,28 +175,6 @@ h1 {
 .boton-enviar:hover {
   box-shadow: none;
   cursor: pointer;
-}
-
-.form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 2rem;
-  padding-right: 4rem;
-  background-color: #ed5564;
-  color: whitesmoke;
-  font-weight: bold;
-  font-family: "Pokemon", sans-serif;
-}
-
-.form-header div {
-  display: flex;
-  align-items: center;
-}
-
-.form-header img {
-  width: 50px;
-  margin-right: 3rem;
 }
 
 .volver {

@@ -1,0 +1,14 @@
+.formdetails {
+    width: 100%;
+    /* border: 1px solid darkgray; */
+    border-radius: 6px;
+    box-shadow: 0px 0px 4px 2px lightgray;
+    margin-right: 2rem;
+}
+  
+.header {
+    max-width: 100%;
+    padding: 0.5rem;
+    background-color: #ed5564;
+    color: whitesmoke;
+}

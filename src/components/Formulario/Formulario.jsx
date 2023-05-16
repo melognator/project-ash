@@ -8,6 +8,7 @@
  * <Formulario />
  */
 
+import styles from "./Formulario.module.css"
 import React from "react";
 import { Link } from "react-router-dom";
 import pokebola from "../../assets/pokebola.png";
@@ -15,41 +16,44 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
+import { docsURL } from "../../urls";
 
 const Formulario = () => {
   return (
     <>
-      <header className="form-header">
-        <div>
+      <header className={styles.header}>
+        <Link to="/" className={styles.brand}>
           <img src={pokebola} alt="pokebola" />
-          <h2>Centro Pokemon de Ash</h2>
-        </div>
-        <Link className="volver" to="/">
+          <h1>Centro Pokemon de Ash</h1>
+        </Link>
+        {/* <Link className="volver" to="/">
           Home
+        </Link> */}
+        <Link target="_blank" className={styles.link} to={docsURL}>
+            Documentación
         </Link>
       </header>
-      <div className="formulario-ingreso">
-        <h3>Solicitud de atención</h3>
+      <section className={styles.formcontainer}>
+        <h2>Solicitud de atención</h2>
         <p>
-          Por favor, completa el formulario para que podamos atender a tu
-          pokémon
+          ¡Bienvenido! Rellena los campos para que podamos <br />encargarnos de tu querido compañero de viaje
         </p>
-        <div className="cuerpo-formulario">
-          <div className="inputs">
+        <div className={styles.formbody}>
+          <div className={styles.inputs}>
             <div>
-              <p className="nombre-seccion">
+              <h4>
                 <img src={entrenador} alt="entrenador" />
-                <span>ENTRENADOR</span>
-              </p>
+                <span>Entrenador</span>
+              </h4>
               <Input name="nombre" label="Nombre" />
               <Input name="apellido" label="Apellido" />
               <Input name="email" label="Email" type="email" />
             </div>
             <div>
-              <p className="nombre-seccion">
+              <h4>
                 <img src={pikachu} alt="pikachu" />
-                <span>POKEMON</span>
-              </p>
+                <span>Pokemon</span>
+              </h4>
               <Input name="nombrePokemon" label="Nombre" />
               <Input name="tipoPokemon" label="Tipo" />
               <Input name="elementoPokemon" label="Elemento" />
@@ -59,7 +63,7 @@ const Formulario = () => {
           </div>
           <Detalle />
         </div>
-      </div>
+      </section>
     </>
   );
 };
