@@ -7,8 +7,9 @@
  * 
  */
 
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FormContext, updateEntrenador, updatePokemon } from "../../context/ContextoFormulario";
+import "./InputStyles.css";
 
 /**
  * 
