@@ -15,6 +15,7 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
+import "./FormularioStyles.css"
 
 const Formulario = () => {
   return (
@@ -36,7 +37,7 @@ const Formulario = () => {
         </p>
         <div className="cuerpo-formulario">
           <div className="inputs">
-            <div>
+            <div >
               <p className="nombre-seccion">
                 <img src={entrenador} alt="entrenador" />
                 <span>ENTRENADOR</span>
@@ -45,7 +46,7 @@ const Formulario = () => {
               <Input name="apellido" label="Apellido" />
               <Input name="email" label="Email" type="email" />
             </div>
-            <div>
+            <div >
               <p className="nombre-seccion">
                 <img src={pikachu} alt="pikachu" />
                 <span>POKEMON</span>

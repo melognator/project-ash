@@ -150,7 +150,7 @@ h1 {
   flex-direction: column;
   justify-content: center;
   padding-bottom: 3rem;
-  margin-top: 2rem;
+
 }
 
 .input-contenedor {
@@ -182,9 +182,10 @@ h1 {
 .detalle-formulario {
   width: 70%;
   border: 1px solid darkgray;
-  margin: 0 3rem;
+  margin: 30px 3rem;
   border-radius: 6px;
   box-shadow: 5px 5px lightgray;
+  height: 689px;
 }
 
 .detalle-formulario .encabezado {
