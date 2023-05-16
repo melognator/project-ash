@@ -16,6 +16,7 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
+import "./FormularioStyles.css"
 import { docsURL } from "../../urls";
 
 const Formulario = () => {
