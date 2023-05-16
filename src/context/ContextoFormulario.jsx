@@ -1,12 +1,15 @@
 /**
+ * ## ContextoFormulario
+ * Contiene tanto el contexto como el provider para poder usarlo.
+ * 
+ * También incluye los métodos para poder usar el `dispatch` de una manera conveniente.
  * @module ContextoFormulario
  */
 
 import { createContext, useReducer } from "react";
 
 /**
- * Es el contexto del Form,
- * al usarlo con useContext retorna los valores `state` y `dispatch`.
+ * Es el contexto del Form, al usarlo con useContext retorna los valores `state` y `dispatch`.
  * 
  * El state contiene el estado del form, y con `dispatch` podemos usar las funciones para modificar dicho estado.
  * 
@@ -56,8 +59,14 @@ export const updatePokemon = (name, value) => {
 
 /**
  * Es el proveedor del contexto del formulario.
+ * 
+ * Es necesario para poder usar FormContext.
  * @param {object} props 
  * @param {object} props.children
+ * @example
+ * <FormContextProvider>
+ *    <App />
+ * <FormContextProvider/>
  */
 export const FormContextProvider = ({children}) => {
     const emptyState = {

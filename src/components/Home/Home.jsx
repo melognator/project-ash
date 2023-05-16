@@ -1,5 +1,11 @@
 /**
+ * ## Componente Home
+ * Es el inicio del sitio.
+ * 
+ * Aquí se encuentran los links para acceder al formulario y la documentación. También contiene el listado de los integrantes.
  * @module Home
+ * @example
+ * <Home />
  */
 
 import React from "react";
@@ -7,24 +13,34 @@ import { Link } from "react-router-dom";
 import pokebola from "../../assets/pokebola.png";
 
 const Home = () => {
+    const integrantes = [
+        "Ezequiel Melogno", 
+        "Jazmín Maldonado", 
+        "Daniela Fernanda Pipke", 
+        "Pablo Alvarez", 
+        "Damián Dellacqua", 
+        "Matias Aplanalp", 
+        "María Cavallo", 
+        "Sergio Nicolás Guerrero", 
+        "Fernanda Rodriguez", 
+        "Barbara Perdomo", 
+        "Ignacio Lopez"
+    ]
+
   return (
     <header className="App-header">
       <img className="App-logo" alt="logo" src={pokebola} />
       <h1>Centro Pokemon de Ash</h1>
-      <Link to="/formularioIngreso" className="boton-ingreso">
-        Ingresar pokemon
-      </Link>
-      <p>Ezequiel Melogno, 
-        Jazmín Maldonado, 
-        Daniela Fernanda Pipke, 
-        Pablo Alvarez, 
-        Damián Dellacqua, 
-        Matias Aplanalp, 
-        María de los Ángeles Cavallo Mayolas, 
-        Sergio Nicolás Guerrero, 
-        Fernanda Rodriguez, 
-        Barbara Perdomo, 
-        Ignacio Lopez</p>
+      <div className="home-buttons">
+        <Link to="/formularioIngreso" className="button primary-button">
+            Ingresar pokemon
+        </Link>
+        <a href="https://project-ash-docs.vercel.app" className="button">Ver documentación</a>
+      </div>
+      <h4>Integrantes</h4>
+      <div className="home-members">
+        {integrantes.map(integrante => <p>{integrante}</p>)}
+      </div>
     </header>
   );
 };

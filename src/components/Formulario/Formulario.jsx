@@ -1,5 +1,11 @@
 /**
+ * ## Componente Formulario
+ * En este componente el usuario puede ingresar tanto sus datos como los de su Pokemon para poder realizar una solicitud.
+ * 
+ * Utiliza FormContext para guardar los datos en un estado global.
  * @module Formulario
+ * @example
+ * <Formulario />
  */
 
 import React from "react";

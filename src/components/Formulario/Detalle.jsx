@@ -1,14 +1,16 @@
 /**
+ * ## Componente Detalle
+ * En este componente se muestran los datos del entrenador y pokemon ingresados en el formulario.
+ * 
+ * Este componente utiliza FormContext para obtener los datos del formulario.
+ * @example
+ * <Detalle />
  * @module Detalle
 */
 
 import React, { useContext } from "react";
 import { FormContext } from "../../context/ContextoFormulario";
 
-/**
- * Muestra los datos del entrenador y pokemon ingresados en el formulario.
- * 
- */
 const Detalle = () => {
     const { state } = useContext(FormContext)
 

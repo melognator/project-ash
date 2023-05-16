@@ -1,20 +1,23 @@
 /**
+ * ## Componente Input
+ * Componente para renderizar un contenedor con un texto descriptivo y un input.
  * @module Input
+ * @example
+ * <Input name="nombre" label="Nombre: " />
+ * 
  */
 
 import React, { useContext, useState } from "react";
 import { FormContext, updateEntrenador, updatePokemon } from "../../context/ContextoFormulario";
 
 /**
- * Componente para renderizar un contenedor con un texto descriptivo y un input
  * 
  * @param {object} props
- * @param {string} props.name // `name` del input, también define el `id`
- * @param {string} props.label // Texto descriptivo del input
- * @param {string} props.type // Tipo del input, por defecto `text`
+ * @param {string} props.name `name` del input, también define el `id`
+ * @param {string} props.label Texto descriptivo del input
+ * @param {string} props.type Tipo del input, por defecto `text`
  * 
- * @example
- * <Input name="nombre" label="Nombre: " />
+ * 
  */
 const Input = ({ name, label, type = "text" }) => {
     const { dispatch } = useContext(FormContext)
