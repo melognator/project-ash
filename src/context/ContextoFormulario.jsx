@@ -23,6 +23,7 @@ export const FormContext = createContext()
 
 const ACTUALIZAR_ENTRENADOR = "ACTUALIZAR_ENTRENADOR"
 const ACTUALIZAR_POKEMON = "ACTUALIZAR_POKEMON"
+const RESET = "RESET"
 
 /**
  * Actualiza el entrenador. Se utiliza con el `dispatch` de FormContext .
@@ -62,6 +63,19 @@ export const updatePokemon = (name, value) => {
 }
 
 /**
+ * Resetea el formulario para que la informacion de entrenador y pokemon queden vacías. Se utiliza con el `dispatch`.
+ * @function
+ * @example dispatch(resetForm())
+ * 
+ */
+export const resetForm = () => {
+    const action = {
+        type: RESET,
+    }
+    return action
+}
+
+/**
  * Es el proveedor del contexto del formulario.
  * 
  * Es necesario para poder usar FormContext.
@@ -88,6 +102,8 @@ export const FormContextProvider = ({children}) => {
             case ACTUALIZAR_POKEMON:
                 payload = action.payload
                 return {...state, pokemon: {...state.pokemon, [payload.name]: payload.value}}
+            case RESET:
+                return emptyState
         }
     }
 
@@ -97,5 +113,6 @@ export const FormContextProvider = ({children}) => {
         state,
         dispatch
     }
+
     return <FormContext.Provider value={value}>{children}</FormContext.Provider>
 }

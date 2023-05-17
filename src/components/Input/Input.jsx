@@ -9,15 +9,16 @@
 
 import { useContext, useState } from "react";
 import { FormContext, updateEntrenador, updatePokemon } from "../../context/ContextoFormulario";
+import PropTypes from 'prop-types';
 import "./InputStyles.css";
+
 
 /**
  * 
  * @param {object} props
  * @param {string} props.name `name` del input, también define el `id`
- * @param {string} props.label Texto descriptivo del input
- * @param {string} props.type Tipo del input, por defecto `text`
- * 
+ * @param {string=} props.label Texto descriptivo del input
+ * @param {string=} props.type Tipo del input, por defecto `text`
  * 
  */
 const Input = ({ name, label, type = "text" }) => {
@@ -52,5 +53,11 @@ const Input = ({ name, label, type = "text" }) => {
         </div>
     );
 };
+
+Input.propTypes = {
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string,
+    type: PropTypes.string,
+}
 
 export default Input;
