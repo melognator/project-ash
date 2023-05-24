@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Input/Input.jsx</title>
+    <title>JSDoc: Source: components/Select/Select.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Input/Input.jsx</h1>
+    <h1 class="page-title">Source: components/Select/Select.jsx</h1>
 
     
 
@@ -27,72 +27,62 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ## Componente Input
- * Componente para renderizar un contenedor con un texto descriptivo y un input. 
- * @module Input
- * @example
- * &lt;Input name="nombre" label="Nombre: " />
+ * ## Componente Select
+ * Componente para renderizar un contenedor con un texto descriptivo y un select.
  * 
+ * Le tienes que pasar opciones.
+ * @module Select
  */
 
-import { useContext, useEffect, useState } from "react";
-import { FormContext, updateEntrenador, updatePokemon } from "../../context/ContextoFormulario";
-import PropTypes from 'prop-types';
-import "./InputStyles.css";
-
+import { useContext } from "react"
+import { FormContext, updatePokemon } from "../../context/ContextoFormulario"
 
 /**
- * 
  * @param {object} props
+ * @param {array} props.options Las opciones que va a renderizar el select
+ * @param {string=} props.placeholderText `placeholde` del select
  * @param {string} props.name `name` del input, también define el `id`
- * @param {string=} props.label Texto descriptivo del input
- * @param {string=} props.type Tipo del input, por defecto `text`
- * @param {boolean=} props.required
- * 
+ * @param {string=} props.label Texto descriptivo del select
+ * @param {boolean=} props.isLoading
  */
-const Input = ({ name, label, type = "text", required }) => {
+const Select = ({ options, placeholderText, label, name, isLoading, required }) => {
+
+    const LOADING_MSG = "Cargando..."
+
     const { dispatch } = useContext(FormContext)
-    const [value, setValue] = useState("")
 
     const onChange = (e) => {
-        setValue(e.target.value)
-    };
+        dispatch(updatePokemon(e.target.name, e.target.value))
+    }
 
-    const onBlur = (e) => {
-        e.preventDefault();
-        if(e.target.name.includes("Pokemon")) {
-            dispatch(updatePokemon(e.target.name, e.target.value))
-        } else {
-            dispatch(updateEntrenador(e.target.name, e.target.value))
+    const capitalize = (text) => {
+        try {
+            return text[0].toUpperCase() + text.substring(1)
+        } catch (e) {
+            return text
         }
-    };
+    }
 
     return (
-        
         &lt;div className="input-contenedor">
             &lt;label htmlFor={name}>{label}&lt;/label>
-            &lt;input
-                required={required}
-                autoComplete="off"
-                type={type}
-                value={value}
-                name={name}
-                id={name}
-                onChange={onChange}
-                onBlur={onBlur}
-            />
+            &lt;select required={required} onChange={onChange} name={name} defaultValue={""} disabled={isLoading}>
+            { isLoading || !options ? 
+                    &lt;option value={""} disabled>{LOADING_MSG}&lt;/option>
+                :
+                &lt;>
+                    &lt;option value={""} disabled>{placeholderText}&lt;/option>
+                    {options.map(option => (
+                        &lt;option key={option.name} value={capitalize(option.name)}>{capitalize(option.name)}&lt;/option>
+                    ))} 
+                &lt;/>
+            }
+            &lt;/select>
         &lt;/div>
-    );
-};
-
-Input.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string,
-    type: PropTypes.string,
+    )
 }
 
-export default Input;
-</code></pre>
+export default Select</code></pre>
         </article>
     </section>
 

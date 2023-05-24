@@ -38,3 +38,9 @@
     font-style: normal;
     color: black;
 }
+
+.message {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}

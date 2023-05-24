@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/Select/SelectTipoPokemon.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,55 +17,52 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/Select/SelectTipoPokemon.jsx</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h2>Documentación del Centro Pokemon de Ash</h2>
-<p>Aquí encontrarás como funciona cada componente del proyecto y ejemplos de como usarlos.<br>
-¡Espero que te sirvan para poder sumarte a nuestro workflow!</p>
-<p>Utiliza la barra lateral para navegar.</p>
-<h4>Links</h4>
-<p>Código fuente: <a href="https://github.com/melognator/project-ash">https://github.com/melognator/project-ash</a><br>
-Demo del proyecto: <a href="https://project-ash.vercel.app">https://project-ash.vercel.app</a><br>
-Documentación: <a href="https://project-ash-docs.vercel.app">https://project-ash-docs.vercel.app</a></p>
-<h4>Integrantes</h4>
-<p>Ezequiel Melogno<br>
-Jazmín Maldonado<br>
-Daniela Fernanda Pipke<br>
-Pablo Alvarez<br>
-Damián Dellacqua<br>
-Matias Aplanalp<br>
-María Cavallo<br>
-Sergio Nicolás Guerrero<br>
-Fernanda Rodriguez<br>
-Barbara Perdomo<br>
-Ignacio Lopez</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ## Componente SelectTipoPokemon
+ * Este componente renderiza un Select de los tipos de pokemon disponibles.  
+ * Utiliza el custom hook `usePokemonTypes`.  
+ * 
+ * En caso de no encontrar tipos de pokemon disponibles, se reemplaza por un simple Input.
+ * @module SelectTipoPokemon
+ * @example
+ * &lt;SelectTipoPokemon />
+ * 
+ */
+import React from 'react'
+import Select from './Select'
+import Input from '../Input/Input'
+import usePokemonTypes from '../../hooks/usePokemonTypes'
+
+const SelectTipoPokemon = ({required}) => {
+
+    const { isLoading, isError, error, data } = usePokemonTypes()
+    
+    return (
+        isError ? (
+            &lt;Input required={required} name="tipoPokemon"
+            label="Tipo" />
+        ) : (
+            &lt;Select
+                required={required}
+                name="tipoPokemon"
+                label="Tipo" options={data?.results}
+                isLoading={isLoading} placeholderText="Seleccione tipo..." />
+        )
+    )
+}
+
+export default SelectTipoPokemon</code></pre>
+        </article>
     </section>
-
-
 
 
 

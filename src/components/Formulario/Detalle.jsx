@@ -8,19 +8,23 @@
  * @module Detalle
 */
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FormContext, resetForm } from "../../context/ContextoFormulario";
 import styles from "./Detalle.module.css"
 import { useNavigate } from "react-router-dom";
+import useHealthcareRequest from "../../hooks/useHealthcareRequest";
 
-const Detalle = () => {
+const Detalle = ({ isLoading, isError, isSuccess }) => {
     const { state, dispatch } = useContext(FormContext)
     const navigate = useNavigate()
 
-    const handleSubmit = () => {
-        alert("Enviado. Pronto procesaremos su solicitud :)")
-        dispatch(resetForm())
-        navigate("/")
+    const renderMessage = () => {
+        if (isError && !isLoading) {
+            return <p style={{color: "red"}} className={styles.message}>Ha ocurrido un error</p>
+        }
+        if (isSuccess) {
+            return <p style={{color: "forestgreen"}} className={styles.message}>Enviado. Pronto procesaremos su solicitud :)</p>
+        }
     }
 
     return (
@@ -47,11 +51,14 @@ const Detalle = () => {
                         <p>Edad: <i>{state.pokemon.edad}</i></p>
                     </div>
                 </section>
+                {renderMessage()}
                 <button
                     className="button primary-button"
-                    onClick={handleSubmit}
+                    // onClick={handleSubmit}
+                    type="submit"
+                    disabled={isLoading}
                 >
-                    Enviar Solicitud
+                    {isLoading ? "Enviando..." : "Enviar Solicitud"}
                 </button>
             </div>
         </div>

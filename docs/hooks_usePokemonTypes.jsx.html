@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: hooks/usePokemonTypes.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,55 +17,48 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: hooks/usePokemonTypes.jsx</h1>
 
     
 
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h2>Documentación del Centro Pokemon de Ash</h2>
-<p>Aquí encontrarás como funciona cada componente del proyecto y ejemplos de como usarlos.<br>
-¡Espero que te sirvan para poder sumarte a nuestro workflow!</p>
-<p>Utiliza la barra lateral para navegar.</p>
-<h4>Links</h4>
-<p>Código fuente: <a href="https://github.com/melognator/project-ash">https://github.com/melognator/project-ash</a><br>
-Demo del proyecto: <a href="https://project-ash.vercel.app">https://project-ash.vercel.app</a><br>
-Documentación: <a href="https://project-ash-docs.vercel.app">https://project-ash-docs.vercel.app</a></p>
-<h4>Integrantes</h4>
-<p>Ezequiel Melogno<br>
-Jazmín Maldonado<br>
-Daniela Fernanda Pipke<br>
-Pablo Alvarez<br>
-Damián Dellacqua<br>
-Matias Aplanalp<br>
-María Cavallo<br>
-Sergio Nicolás Guerrero<br>
-Fernanda Rodriguez<br>
-Barbara Perdomo<br>
-Ignacio Lopez</p></article>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ## usePokemonTypes
+ * Este custom Hook devuelve una query de React Query.  
+ * 
+ * Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.
+ * @module usePokemonTypes
+ * @example
+ * const { isLoading, isError, data, error, refetch } = usePokemonTypes()
+ * console.log(data.results)
+ */
+
+import { useQuery } from "@tanstack/react-query"
+import { pokemonTypesURL } from "../urls"
+
+const usePokemonTypes = (onSuccess, onError) => {
+
+    const getPokemonTypes = () => (
+        fetch(pokemonTypesURL)
+            .then(res => res.json())
+    )
+
+    const query = useQuery(["getPokemonTypes"], getPokemonTypes, {
+        onSuccess,
+        onError,
+        retry: false,
+    })
+
+    return query
+}
+
+export default usePokemonTypes</code></pre>
+        </article>
     </section>
-
-
 
 
 

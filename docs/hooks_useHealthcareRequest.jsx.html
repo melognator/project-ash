@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Home/Home.jsx</title>
+    <title>JSDoc: Source: hooks/useHealthcareRequest.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Home/Home.jsx</h1>
+    <h1 class="page-title">Source: hooks/useHealthcareRequest.jsx</h1>
 
     
 
@@ -27,56 +27,48 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ## Componente Home
- * Es el inicio del sitio.
+ * ## useHealthcareRequest
+ * Este custom Hook devuelve una mutación de React Query a la que podemos llamar usando `mutate` para ejecutar el POST request de una solicitud de atención.
  * 
- * Aquí se encuentran los links para acceder al formulario y la documentación. También contiene el listado de los integrantes.
- * @module Home
+ * @module useHealthcareRequest
  * @example
- * &lt;Home />
+ * const { isLoading, isError, isSuccess, mutate } = useHealthcareRequest()
+ * &lt;button onClick={mutate({ entrenador: "Ash", pokemon: "Pikachu" })}>Clickeame!&lt;/button>
  */
 
-import React from "react";
-import { Link } from "react-router-dom";
-import pokebola from "../../assets/pokebola.png";
+import { useMutation } from "@tanstack/react-query"
+import { postHealthcareRequestURL } from "../urls"
+import { useState } from "react"
 
-const Home = () => {
-    const integrantes = [
-        "Ezequiel Melogno", 
-        "Jazmín Maldonado", 
-        "Daniela Fernanda Pipke", 
-        "Pablo Alvarez", 
-        "Damián Dellacqua", 
-        "Matias Aplanalp", 
-        "María Cavallo", 
-        "Sergio Nicolás Guerrero", 
-        "Fernanda Rodriguez", 
-        "Barbara Perdomo", 
-        "Ignacio Lopez"
-    ]
+const useHealthcareRequest = (onSuccess, onError) => {
 
-  return (
-    &lt;header className="App-header">
-      &lt;img className="App-logo" alt="logo" src={pokebola} />
-      &lt;h1>Centro Pokemon de Ash&lt;/h1>
-      &lt;div className="home-buttons">
-        &lt;Link to="/formularioIngreso" className="button primary-button">
-            Ingresar pokemon
-        &lt;/Link>
-        &lt;a href="https://project-ash-docs.vercel.app"
-        target="_blank"
-        className="button">Ver documentación&lt;/a>
-      &lt;/div>
-      &lt;h4>Integrantes&lt;/h4>
-      &lt;div className="home-members">
-        {integrantes.map(integrante => &lt;p>{integrante}&lt;/p>)}
-      &lt;/div>
-    &lt;/header>
-  );
-};
+    const [isError, setIsError] = useState(false)
 
-export default Home;
-</code></pre>
+    const handler = (response) => {
+        if (response.ok) {
+            setIsError(false)
+            onSuccess(response)
+        } else {
+            onError(response)
+            setIsError(true)
+        }
+    }
+
+    const mutation = useMutation(data => fetch(postHealthcareRequestURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    }), {
+        onSuccess: handler,
+        onError: handler,
+    })
+
+    return {...mutation, isError}
+}
+
+export default useHealthcareRequest</code></pre>
         </article>
     </section>
 

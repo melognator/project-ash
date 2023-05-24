@@ -1,4 +1,4 @@
-.input-contenedor input {
+.input-contenedor input, select {
   text-decoration: none;
   font-size: 1.25rem;
   padding: 0.75rem;
@@ -11,7 +11,8 @@
   box-shadow: 0px 0px 20px -18px;
   box-sizing: border-box;
 }
-.input-contenedor input:hover {
+
+.input-contenedor input:hover, select:hover {
   border: 1px solid rgb(0, 0, 0);
   box-shadow: 0px 0px 20px -17px;
 }   
@@ -37,7 +38,7 @@
         align-items: center;
     }
 
-    .input-contenedor input {
+    .input-contenedor input, select {
         width: calc(100% - 6rem);
     }
 }
