@@ -41,7 +41,7 @@ const Home = () => {
       </div>
       <h4>Integrantes</h4>
       <div className="home-members">
-        {integrantes.map(integrante => <p>{integrante}</p>)}
+        {integrantes.map(integrante => <p key={integrante}>{integrante}</p>)}
       </div>
     </header>
   );

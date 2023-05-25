@@ -62,13 +62,13 @@ const Formulario = () => {
         dispatch(resetForm())
     }
 
-    const handleSuccess = (response) => {
+    const handleSuccess = () => {
         doShowAlert()
         resetFormulario()
     }
 
-    const handleError = (response) => {
-        console.log(response)
+    const handleError = (e) => {
+        console.log("Ha ocurrido un error: " + e)
     }
 
     const formMutation = useHealthcareRequest(handleSuccess, handleError)

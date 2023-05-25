@@ -14,16 +14,18 @@ import Select from './Select'
 import Input from '../Input/Input'
 import usePokemonTypes from '../../hooks/usePokemonTypes'
 
-const SelectTipoPokemon = ({required}) => {
+const SelectTipoPokemon = ({required, value, onChange}) => {
 
     const { isLoading, isError, error, data } = usePokemonTypes()
-    
+
     return (
         isError ? (
-            <Input required={required} name="tipoPokemon"
+            <Input value={value} onChange={onChange} required={required} name="tipoPokemon"
             label="Tipo" />
         ) : (
             <Select
+                value={value}
+                onChange={onChange}
                 required={required}
                 name="tipoPokemon"
                 label="Tipo" options={data?.results}

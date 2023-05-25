@@ -17,13 +17,14 @@ import { FormContext, updatePokemon } from "../../context/ContextoFormulario"
  * @param {string=} props.label Texto descriptivo del select
  * @param {boolean=} props.isLoading
  */
-const Select = ({ options, placeholderText, label, name, isLoading, required }) => {
+const Select = ({ options, placeholderText, label, name, isLoading, required, value, onChange }) => {
 
     const LOADING_MSG = "Cargando..."
 
     const { dispatch } = useContext(FormContext)
 
-    const onChange = (e) => {
+    const handleChange = (e) => {
+        onChange(e)
         dispatch(updatePokemon(e.target.name, e.target.value))
     }
 
@@ -38,7 +39,7 @@ const Select = ({ options, placeholderText, label, name, isLoading, required }) 
     return (
         <div className="input-contenedor">
             <label htmlFor={name}>{label}</label>
-            <select required={required} onChange={onChange} name={name} defaultValue={""} disabled={isLoading}>
+            <select value={value} required={required} onChange={handleChange} name={name} disabled={isLoading}>
             { isLoading || !options ? 
                     <option value={""} disabled>{LOADING_MSG}</option>
                 :

@@ -10,21 +10,8 @@
 
 import { useMutation } from "@tanstack/react-query"
 import { postHealthcareRequestURL } from "../urls"
-import { useState } from "react"
 
 const useHealthcareRequest = (onSuccess, onError) => {
-
-    const [isError, setIsError] = useState(false)
-
-    const handler = (response) => {
-        if (response.ok) {
-            setIsError(false)
-            onSuccess(response)
-        } else {
-            onError(response)
-            setIsError(true)
-        }
-    }
 
     const mutation = useMutation(data => fetch(postHealthcareRequestURL, {
         method: 'POST',
@@ -32,12 +19,20 @@ const useHealthcareRequest = (onSuccess, onError) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
-    }), {
-        onSuccess: handler,
-        onError: handler,
     })
+        .then(res => {
+            if(res.ok) {
+                return res.json()
+            } else {
+                throw new Error("Error " + res.status + " " + res.statusText)
+            }
+        })
+        , {
+            onSuccess: onSuccess,
+            onError: onError,
+        })
 
-    return {...mutation, isError}
+    return { ...mutation }
 }
 
 export default useHealthcareRequest
