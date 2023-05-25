@@ -8,23 +8,25 @@
  * @module Detalle
 */
 
-import { useContext, useState } from "react";
-import { FormContext, resetForm } from "../../context/ContextoFormulario";
 import styles from "./Detalle.module.css"
 import { useNavigate } from "react-router-dom";
-import useHealthcareRequest from "../../hooks/useHealthcareRequest";
 
-const Detalle = ({ isLoading, isError, isSuccess }) => {
-    const { state, dispatch } = useContext(FormContext)
+
+const Detalle = ({ isLoading, isError, isSuccess, state }) => {
     const navigate = useNavigate()
 
+    /**
+     * #### renderMessage()
+     * Renderiza el mensaje de éxito/error del formulario.
+     * @module Detalle
+     */
     const renderMessage = () => {
         if (isError && !isLoading) {
             return <p style={{color: "red"}} className={styles.message}>Ha ocurrido un error</p>
         }
-        if (isSuccess) {
-            return <p style={{color: "forestgreen"}} className={styles.message}>Enviado. Pronto procesaremos su solicitud :)</p>
-        }
+        // if (isSuccess) {
+        //     return <p style={{color: "forestgreen"}} className={styles.message}>Enviado. Pronto procesaremos su solicitud :)</p>
+        // }
     }
 
     return (

@@ -110,6 +110,17 @@ h1 {
     filter: brightness(120%)
 }
 
+.outlined-button {
+    border: solid 1px #ed5564;
+    background-color: transparent;
+    color: #ed5564;
+}
+
+.outlined-button:hover {
+    background-color: #ed5564;
+    color: whitesmoke;
+}
+
 .home-members>p {
     margin: 0;
 }

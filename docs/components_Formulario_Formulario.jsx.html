@@ -30,15 +30,16 @@
  * ## Componente Formulario
  * En este componente el usuario puede ingresar tanto sus datos como los de su Pokemon para poder realizar una solicitud.
  * 
- * Utiliza FormContext para guardar los datos en un estado global.
+ * Utiliza FormContext para guardar los datos en un estado global.  
+ * Se encarga de manejar el estado de los inputs y selects.  
  * @module Formulario
  * @example
  * &lt;Formulario />
  */
 
 import styles from "./Formulario.module.css"
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import pokebola from "../../assets/pokebola.png";
 import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
@@ -48,13 +49,50 @@ import { docsURL } from "../../urls";
 import SelectTipoPokemon from "../Select/SelectTipoPokemon";
 import { FormContext, resetForm } from "../../context/ContextoFormulario";
 import useHealthcareRequest from "../../hooks/useHealthcareRequest";
+import FormAlert from "../Alert/FormAlert";
 
 const Formulario = () => {
 
+    const initalState = {
+        nombre: "",
+        apellido: "",
+        email: "",
+        nombrePokemon: "",
+        tipoPokemon: "",
+        alturaPokemon: "",
+        edadPokemon: "",
+    }
+
+    const navigate = useNavigate()
     const { state, dispatch } = useContext(FormContext)
+    const [formState, setFormState] = useState(initalState)
+    const [showAlert, setShowAlert] = useState(false)
+
+    const onChange = (e) => {
+        setFormState(state => ({...state, [e.target.name]: e.target.value}))
+    };
+
+    const doShowAlert = () => {
+        setShowAlert(true)
+    }
+
+    const closeAlert = () => {
+        setShowAlert(false)
+    }
+    
+    const backHome = () => {
+        closeAlert()
+        navigate('/')
+    }
+
+    const resetFormulario = () => {
+        setFormState(initalState)
+        dispatch(resetForm())
+    }
 
     const handleSuccess = (response) => {
-        dispatch(resetForm())
+        doShowAlert()
+        resetFormulario()
     }
 
     const handleError = (response) => {
@@ -66,11 +104,8 @@ const Formulario = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         formMutation.mutate(state)
+        e.target.reset()
     }
-
-    
-
-
 
     return (
         &lt;>
@@ -92,32 +127,33 @@ const Formulario = () => {
                     ¡Bienvenido! Rellena los campos para que podamos &lt;br />encargarnos de tu querido compañero de viaje
                 &lt;/p>
                 &lt;form onSubmit={onSubmit} className={styles.formbody}>
-                    &lt;div className={styles.inputs}>
+                    &lt;div>
                         &lt;div className={styles.group}>
                             &lt;h4>
                                 &lt;img src={entrenador} alt="entrenador" />
                                 &lt;span>Entrenador&lt;/span>
                             &lt;/h4>
-                            &lt;Input required={true} name="nombre" label="Nombre" />
-                            &lt;Input required={true} name="apellido" label="Apellido" />
-                            &lt;Input required={true} name="email" label="Email" type="email" />
+                            &lt;Input value={formState.nombre} onChange={onChange} required={true} name="nombre" label="Nombre" />
+                            &lt;Input value={formState.apellido} onChange={onChange} required={true} name="apellido" label="Apellido" />
+                            &lt;Input value={formState.email} onChange={onChange} required={true} name="email" label="Email" type="email" />
                         &lt;/div>
                         &lt;div className={styles.group}>
                             &lt;h4>
                                 &lt;img src={pikachu} alt="pikachu" />
                                 &lt;span>Pokemon&lt;/span>
                             &lt;/h4>
-                            &lt;Input required={true} name="nombrePokemon" label="Nombre" />
+                            &lt;Input value={formState.nombrePokemon} onChange={onChange} required={true} name="nombrePokemon" label="Nombre" />
                             {/* &lt;Input name="tipoPokemon" label="Tipo" /> */}
-                            &lt;SelectTipoPokemon required={true} />
+                            &lt;SelectTipoPokemon value={formState.tipoPokemon} onChange={onChange} required={true} />
                             {/* &lt;Input name="elementoPokemon" label="Elemento" /> */}
-                            &lt;Input name="alturaPokemon" label="Altura" />
-                            &lt;Input name="edadPokemon" label="Edad" />
+                            &lt;Input value={formState.alturaPokemon} onChange={onChange} name="alturaPokemon" label="Altura" />
+                            &lt;Input value={formState.edadPokemon} onChange={onChange} name="edadPokemon" label="Edad" />
                         &lt;/div>
                     &lt;/div>
-                    &lt;Detalle {...formMutation} />
+                    &lt;Detalle {...formMutation} state={state} />
                 &lt;/form>
             &lt;/section>
+            &lt;FormAlert show={showAlert} backHome={backHome} closeAlert={closeAlert} />
         &lt;/>
     );
 };
@@ -133,13 +169,13 @@ export default Formulario;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ContextoFormulario.html">ContextoFormulario</a></li><li><a href="module-Detalle.html">Detalle</a></li><li><a href="module-Formulario.html">Formulario</a></li><li><a href="module-Home.html">Home</a></li><li><a href="module-Input.html">Input</a></li><li><a href="module-Select.html">Select</a></li><li><a href="module-SelectTipoPokemon.html">SelectTipoPokemon</a></li><li><a href="module-useHealthcareRequest.html">useHealthcareRequest</a></li><li><a href="module-usePokemonTypes.html">usePokemonTypes</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ContextoFormulario.html">ContextoFormulario</a></li><li><a href="module-Detalle.html">Detalle</a></li><li><a href="module-FormAlert.html">FormAlert</a></li><li><a href="module-Formulario.html">Formulario</a></li><li><a href="module-Home.html">Home</a></li><li><a href="module-Input.html">Input</a></li><li><a href="module-Select.html">Select</a></li><li><a href="module-SelectTipoPokemon.html">SelectTipoPokemon</a></li><li><a href="module-useHealthcareRequest.html">useHealthcareRequest</a></li><li><a href="module-usePokemonTypes.html">usePokemonTypes</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed May 24 2023 20:58:15 GMT-0300 (hora estándar de Uruguay)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu May 25 2023 17:29:17 GMT-0300 (hora estándar de Uruguay)
 </footer>
 
 <script> prettyPrint(); </script>

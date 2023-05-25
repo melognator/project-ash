@@ -1,9 +1,11 @@
 /**
  * ## Componente Input
  * Componente para renderizar un contenedor con un texto descriptivo y un input. 
+ * 
+ * Se necesita pasarle el estado y una función onChange para que maneje el estado.
  * @module Input
  * @example
- * <Input name="nombre" label="Nombre: " />
+ * <Input value={value} onChange={onChange} name="nombre" label="Nombre: " />
  * 
  */
 
@@ -16,19 +18,16 @@ import "./InputStyles.css";
 /**
  * 
  * @param {object} props
+ * @param {string} props.value Valor del input
+ * @param {function} props.onChange Función onChange del input, para manejar el estado
  * @param {string} props.name `name` del input, también define el `id`
  * @param {string=} props.label Texto descriptivo del input
  * @param {string=} props.type Tipo del input, por defecto `text`
  * @param {boolean=} props.required
  * 
  */
-const Input = ({ name, label, type = "text", required }) => {
+const Input = ({ value, onChange, name, label, type = "text", required }) => {
     const { dispatch } = useContext(FormContext)
-    const [value, setValue] = useState("")
-
-    const onChange = (e) => {
-        setValue(e.target.value)
-    };
 
     const onBlur = (e) => {
         e.preventDefault();
@@ -40,7 +39,6 @@ const Input = ({ name, label, type = "text", required }) => {
     };
 
     return (
-        
         <div className="input-contenedor">
             <label htmlFor={name}>{label}</label>
             <input

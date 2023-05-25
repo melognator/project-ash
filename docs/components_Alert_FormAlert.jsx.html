@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Home/Home.jsx</title>
+    <title>JSDoc: Source: components/Alert/FormAlert.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Home/Home.jsx</h1>
+    <h1 class="page-title">Source: components/Alert/FormAlert.jsx</h1>
 
     
 
@@ -27,56 +27,46 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ## Componente Home
- * Es el inicio del sitio.
+ * ## Componente FormAlert
+ * Este componente sirve para decile al usuario que su petición fue exitosa.  
  * 
- * Aquí se encuentran los links para acceder al formulario y la documentación. También contiene el listado de los integrantes.
- * @module Home
+ * Tiene un par de botones, uno para volver al home y otro para cerrar la alerta. De todas formas al apretar fuera de la alerta la misma se cierra.
+ * 
  * @example
- * &lt;Home />
- */
+ * &lt;FormAlert show={show} backHome={() => navigate('/')} closeAlert={() => setShow(false)} />
+ * @module FormAlert
+*/
 
-import React from "react";
-import { Link } from "react-router-dom";
-import pokebola from "../../assets/pokebola.png";
 
-const Home = () => {
-    const integrantes = [
-        "Ezequiel Melogno", 
-        "Jazmín Maldonado", 
-        "Daniela Fernanda Pipke", 
-        "Pablo Alvarez", 
-        "Damián Dellacqua", 
-        "Matias Aplanalp", 
-        "María Cavallo", 
-        "Sergio Nicolás Guerrero", 
-        "Fernanda Rodriguez", 
-        "Barbara Perdomo", 
-        "Ignacio Lopez"
-    ]
+import React from 'react'
+import styles from "./FormAlert.module.css"
 
-  return (
-    &lt;header className="App-header">
-      &lt;img className="App-logo" alt="logo" src={pokebola} />
-      &lt;h1>Centro Pokemon de Ash&lt;/h1>
-      &lt;div className="home-buttons">
-        &lt;Link to="/formularioIngreso" className="button primary-button">
-            Ingresar pokemon
-        &lt;/Link>
-        &lt;a href="https://project-ash-docs.vercel.app"
-        target="_blank"
-        className="button">Ver documentación&lt;/a>
-      &lt;/div>
-      &lt;h4>Integrantes&lt;/h4>
-      &lt;div className="home-members">
-        {integrantes.map(integrante => &lt;p>{integrante}&lt;/p>)}
-      &lt;/div>
-    &lt;/header>
-  );
-};
+const FormAlert = ({ show, backHome, closeAlert }) => {
 
-export default Home;
-</code></pre>
+    // Esto sirve para que no se cierre la alerta al apretar dentro de la misma.
+    const alertOnClick = (e) => {
+        e.stopPropagation()
+    }
+
+    return (
+        &lt;div onClick={closeAlert} className={`${styles.container} ${!show ? styles.hide : ""}`}>
+            &lt;div onClick={alertOnClick} className={styles.alert}>
+                &lt;h4>Enviado!&lt;/h4>
+                &lt;p>Pronto procesaremos su solicitud :)&lt;/p>
+                &lt;div className={styles.buttons}>
+                    &lt;button onClick={backHome} className="button primary-button">
+                        Volver al Home
+                    &lt;/button>
+                    &lt;button onClick={closeAlert} className="button outlined-button">
+                        Nueva solicitud
+                    &lt;/button>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    )
+}
+
+export default FormAlert</code></pre>
         </article>
     </section>
 
