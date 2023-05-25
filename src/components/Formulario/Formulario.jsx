@@ -40,10 +40,6 @@ const Formulario = () => {
         formMutation.mutate(state)
     }
 
-    
-
-
-
     return (
         <>
             <header className={styles.header}>
@@ -64,7 +60,7 @@ const Formulario = () => {
                     ¡Bienvenido! Rellena los campos para que podamos <br />encargarnos de tu querido compañero de viaje
                 </p>
                 <form onSubmit={onSubmit} className={styles.formbody}>
-                    <div className={styles.inputs}>
+                    <div>
                         <div className={styles.group}>
                             <h4>
                                 <img src={entrenador} alt="entrenador" />
