@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: hooks/usePokemonTypes.jsx</title>
+    <title>JSDoc: Module: usePokemonSpecies</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,48 +17,103 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: hooks/usePokemonTypes.jsx</h1>
+    <h1 class="page-title">Module: usePokemonSpecies</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * ## usePokemonTypes
- * Este custom Hook devuelve una query de React Query.  
- * 
- * Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.
- * @module usePokemonTypes
- * @example
- * const { isLoading, isError, data, error, refetch } = usePokemonTypes()
- * console.log(data.results)
- */
+</header>
 
-import { useQuery } from "@tanstack/react-query"
-import { pokemonTypesURL } from "../urls"
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h2>usePokemonSpecies</h2>
+<p>Este custom Hook devuelve una query de React Query.</p>
+<p>Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.</p></div>
+        
 
-const usePokemonTypes = (onSuccess, onError) => {
+        
 
-    const getPokemonTypes = () => (
-        fetch(pokemonTypesURL)
-            .then(res => res.json())
-    )
 
-    const query = useQuery(["getPokemonTypes"], getPokemonTypes, {
-        onSuccess,
-        onError,
-        retry: false,
-    })
+<dl class="details">
 
-    return query
-}
+    
 
-export default usePokemonTypes</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="hooks_usePokemonSpecies.jsx.html">hooks/usePokemonSpecies.jsx</a>, <a href="hooks_usePokemonSpecies.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+            <h3>Example</h3>
+            
+    <pre class="prettyprint"><code>const { isLoading, isError, data, error, refetch } = usePokemonSpecies()console.log(data.results)</code></pre>
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
