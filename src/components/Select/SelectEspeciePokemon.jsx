@@ -49,7 +49,7 @@ const SelectEspeciePokemon = ({ required, value, onChange }) => {
                                 ))}
                             </section>
                             :
-                            <section class={styles.loading}>
+                            <section className={styles.loading}>
                                 <p>Cargando...</p>
                             </section>
                     }
