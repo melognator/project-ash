@@ -84,7 +84,7 @@ const Formulario = () => {
     return (
         <>
             <header className={styles.header}>
-                <Link to="/" className={styles.brand}>
+                <Link onClick={resetFormulario} to="/" className={styles.brand}>
                     <img src={pokebola} alt="pokebola" />
                     <h1>Centro Pokemon de Ash</h1>
                 </Link>

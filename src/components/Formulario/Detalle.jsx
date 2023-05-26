@@ -9,11 +9,9 @@
 */
 
 import styles from "./Detalle.module.css"
-import { useNavigate } from "react-router-dom";
 
 
 const Detalle = ({ isLoading, isError, isSuccess, state }) => {
-    const navigate = useNavigate()
 
     /**
      * #### renderMessage()
