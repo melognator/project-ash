@@ -9,6 +9,14 @@
 import { useContext } from "react"
 import { FormContext, updatePokemon } from "../../context/ContextoFormulario"
 
+export const capitalize = (text) => {
+    try {
+        return text[0].toUpperCase() + text.substring(1)
+    } catch (e) {
+        return text
+    }
+}
+
 /**
  * @param {object} props
  * @param {array} props.options Las opciones que va a renderizar el select
@@ -28,13 +36,6 @@ const Select = ({ options, placeholderText, label, name, isLoading, required, va
         dispatch(updatePokemon(e.target.name, e.target.value))
     }
 
-    const capitalize = (text) => {
-        try {
-            return text[0].toUpperCase() + text.substring(1)
-        } catch (e) {
-            return text
-        }
-    }
 
     return (
         <div className="input-contenedor">

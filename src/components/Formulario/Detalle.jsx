@@ -47,6 +47,7 @@ const Detalle = ({ isLoading, isError, isSuccess, state }) => {
                     <h4>Datos del Pokémon</h4>
                     <div className="fila">
                         <p>Nombre: <i>{state.pokemon.nombre}</i></p>
+                        <p>Especie: <i>{state.pokemon.especie}</i></p>
                         <p>Tipo: <i>{state.pokemon.tipo}</i></p>
                         {/* <p>Elemento: {state.pokemon.elemento}</p> */}
                         <p>Altura: <i>{state.pokemon.altura}</i></p>

@@ -26,31 +26,38 @@ import "./InputStyles.css";
  * @param {boolean=} props.required
  * 
  */
-const Input = ({ value, onChange, name, label, type = "text", required }) => {
+const Input = ({ value, onChange, name, label, type = "text", required, readOnly, onClick, children, disableOnBlur }) => {
     const { dispatch } = useContext(FormContext)
 
     const onBlur = (e) => {
         e.preventDefault();
-        if(e.target.name.includes("Pokemon")) {
-            dispatch(updatePokemon(e.target.name, e.target.value))
-        } else {
-            dispatch(updateEntrenador(e.target.name, e.target.value))
+        if(!disableOnBlur) {
+            if(e.target.name.includes("Pokemon")) {
+                dispatch(updatePokemon(e.target.name, e.target.value))
+            } else {
+                dispatch(updateEntrenador(e.target.name, e.target.value))
+            }
         }
     };
 
     return (
         <div className="input-contenedor">
             <label htmlFor={name}>{label}</label>
-            <input
-                required={required}
-                autoComplete="off"
-                type={type}
-                value={value}
-                name={name}
-                id={name}
-                onChange={onChange}
-                onBlur={onBlur}
-            />
+            <div className="input">
+                <input
+                    onClick={onClick}
+                    readOnly={readOnly}
+                    required={required}
+                    autoComplete="off"
+                    type={type}
+                    value={value}
+                    name={name}
+                    id={name}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                />
+                {children}
+            </div>
         </div>
     );
 };

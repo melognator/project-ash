@@ -12,8 +12,8 @@
 import styles from "./Formulario.module.css"
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import pokebola from "../../assets/pokebola.png";
 import entrenador from "../../assets/entrenador.png";
+import pokebola from "../../assets/pokebola.png";
 import pikachu from "../../assets/pikachu.png";
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
@@ -22,6 +22,7 @@ import SelectTipoPokemon from "../Select/SelectTipoPokemon";
 import { FormContext, resetForm } from "../../context/ContextoFormulario";
 import useHealthcareRequest from "../../hooks/useHealthcareRequest";
 import FormAlert from "../Alert/FormAlert";
+import SelectEspeciePokemon from "../Select/SelectEspeciePokemon";
 
 const Formulario = () => {
 
@@ -30,6 +31,7 @@ const Formulario = () => {
         apellido: "",
         email: "",
         nombrePokemon: "",
+        especiePokemon: "",
         tipoPokemon: "",
         alturaPokemon: "",
         edadPokemon: "",
@@ -115,7 +117,7 @@ const Formulario = () => {
                                 <span>Pokemon</span>
                             </h4>
                             <Input value={formState.nombrePokemon} onChange={onChange} required={true} name="nombrePokemon" label="Nombre" />
-                            {/* <Input name="tipoPokemon" label="Tipo" /> */}
+                            <SelectEspeciePokemon onChange={onChange} value={formState.especiePokemon} />
                             <SelectTipoPokemon value={formState.tipoPokemon} onChange={onChange} required={true} />
                             {/* <Input name="elementoPokemon" label="Elemento" /> */}
                             <Input value={formState.alturaPokemon} onChange={onChange} name="alturaPokemon" label="Altura" />
