@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Select/SelectEspeciePokemon.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Select/SelectEspeciePokemon.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ## Componente SelectEspeciePokemon
+ * Este componente renderiza un popup para seleccionar una especie de pokemon.  
+ * Utiliza el custom hook `usePokemonSpecies`.  
+ * 
+ * @module SelectEspeciePokemon
+ * @example
+ * &lt;SelectEspeciePokemon value={value} onChange={onChange} />
+ */
+
+import React, { useContext, useState } from 'react'
+import styles from "./SelectEspeciePokemon.module.css"
+import Input from '../Input/Input'
+import usePokemonSpecies from '../../hooks/usePokemonSpecies'
+import { capitalize } from './Select'
+import { FormContext, updatePokemon } from '../../context/ContextoFormulario'
+
+const SelectEspeciePokemon = ({ required, value, onChange }) => {
+    const { dispatch } = useContext(FormContext)
+    const [show, setShow] = useState(false)
+
+    const closeSelect = () => {
+        setShow(false)
+    }
+
+    const openSelect = (e) => {
+        setShow(true)
+    }
+
+    const selectPokemon = (pokemon) => {
+        const fakeEvent = { target: { name: 'especiePokemon', value: pokemon } }
+        onChange(fakeEvent)
+        dispatch(updatePokemon(fakeEvent.target.name, fakeEvent.target.value))
+        closeSelect()
+    }
+
+    const inputOnChange = (e) => {
+        e.preventDefault()
+    }
+
+    const { query, prev, next } = usePokemonSpecies()
+
+    return (
+        &lt;>
+            &lt;Input className={styles.input} disableOnBlur={true} onClick={openSelect} name='especiePokemon' onChange={inputOnChange} value={value} label='Especie:' required={true} >
+                &lt;div className={`${styles.popup} ${!show ? styles.hidePopup : ""}`}>
+                    &lt;h4>Selecciona la especie...&lt;/h4>
+                    {
+                        query.data?.results ?
+                            &lt;section className={styles.pokemonList}>
+                                {query.data?.results?.map(pokemon => (
+                                    &lt;article key={pokemon.name}>
+                                        &lt;button title={pokemon.name} onClick={() => selectPokemon(capitalize(pokemon.name))} type='button'>
+                                            &lt;img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[pokemon.url.split('/').length - 2]}.png`} alt="" />
+                                        &lt;/button>
+                                    &lt;/article>
+                                ))}
+                            &lt;/section>
+                            :
+                            &lt;section className={styles.loading}>
+                                &lt;p>Cargando...&lt;/p>
+                            &lt;/section>
+                    }
+                    &lt;span className={styles.pageButtons}>
+                        &lt;button disabled={query.data?.previous == null} onClick={prev} type='button' className='button primary-button'>{"&lt;"}&lt;/button>
+                        {/* &lt;button className='button primary-button'>{"Confirmar"}&lt;/button> */}
+                        &lt;button disabled={query.data?.next == null} onClick={next} type='button' className='button primary-button'>{">"}&lt;/button>
+                    &lt;/span>
+                &lt;/div>
+            &lt;/Input>
+            &lt;div onClick={closeSelect} className={`${styles.overlay} ${!show ? styles.hideOverlay : ""}`}>&lt;/div>
+        &lt;/>
+    )
+}
+
+export default SelectEspeciePokemon</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-ContextoFormulario.html">ContextoFormulario</a></li><li><a href="module-Detalle.html">Detalle</a></li><li><a href="module-FormAlert.html">FormAlert</a></li><li><a href="module-Formulario.html">Formulario</a></li><li><a href="module-Home.html">Home</a></li><li><a href="module-Input.html">Input</a></li><li><a href="module-Select.html">Select</a></li><li><a href="module-SelectEspeciePokemon.html">SelectEspeciePokemon</a></li><li><a href="module-SelectTipoPokemon.html">SelectTipoPokemon</a></li><li><a href="module-URLs.html">URLs</a></li><li><a href="module-useHealthcareRequest.html">useHealthcareRequest</a></li><li><a href="module-usePokemonSpecies.html">usePokemonSpecies</a></li><li><a href="module-usePokemonTypes.html">usePokemonTypes</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 29 2023 23:28:41 GMT-0300 (hora estándar de Uruguay)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

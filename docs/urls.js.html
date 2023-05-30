@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: hooks/usePokemonSpecies.jsx</title>
+    <title>JSDoc: Source: urls.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: hooks/usePokemonSpecies.jsx</h1>
+    <h1 class="page-title">Source: urls.js</h1>
 
     
 
@@ -27,53 +27,17 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ## usePokemonSpecies
- * Este custom Hook devuelve una query de React Query.  
- * 
- * Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.
- * @module usePokemonSpecies
- * @example
- * const { isLoading, isError, data, error, refetch } = usePokemonSpecies()
- * console.log(data.results)
+ * ## URLS
+ * En este archivo se encuentran las URLs para hacer llamados a las APIs y algunas otras.
+ * @module URLs
  */
 
-import { useQuery } from "@tanstack/react-query"
-import { pokemonSpeciesURL } from "../urls"
-import { useState } from "react"
+export const githubURL = "https://github.com/melognator/project-ash"
+export const docsURL = "https://project-ash-docs.vercel.app"
 
-const usePokemonSpecies = (onSuccess, onError) => {
-
-    // const [nextURL, setNextURL] = useState(null)
-    // const [prevURL, setPrevURL] = useState(null)
-    const [actualURL, setActualURL] = useState(pokemonSpeciesURL)
-
-    const getPokemonSpecies = () => (
-        fetch(actualURL)
-            .then(res => res.json())
-    )
-
-
-    const query = useQuery(["getPokemonSpecies", actualURL], getPokemonSpecies, {
-        onSuccess,
-        onError,
-    })
-
-    const prev = () => {
-        if(query.data?.previous) {
-            setActualURL(query.data.previous)
-        }
-    }
-    const next = () => {
-        if(query.data?.next) {
-            setActualURL(query.data.next)
-        }
-    }
-
-
-    return {query, prev, next}
-}
-
-export default usePokemonSpecies</code></pre>
+export const pokemonTypesURL = "https://pokeapi.co/api/v2/type"
+export const pokemonSpeciesURL = `https://pokeapi.co/api/v2/pokemon-species?offset=0&amp;limit=20`
+export const postHealthcareRequestURL = "https://jsonplaceholder.typicode.com/todos"</code></pre>
         </article>
     </section>
 

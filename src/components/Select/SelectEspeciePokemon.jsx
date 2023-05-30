@@ -1,3 +1,13 @@
+/**
+ * ## Componente SelectEspeciePokemon
+ * Este componente renderiza un popup para seleccionar una especie de pokemon.  
+ * Utiliza el custom hook `usePokemonSpecies`.  
+ * 
+ * @module SelectEspeciePokemon
+ * @example
+ * <SelectEspeciePokemon value={value} onChange={onChange} />
+ */
+
 import React, { useContext, useState } from 'react'
 import styles from "./SelectEspeciePokemon.module.css"
 import Input from '../Input/Input'
@@ -6,9 +16,7 @@ import { capitalize } from './Select'
 import { FormContext, updatePokemon } from '../../context/ContextoFormulario'
 
 const SelectEspeciePokemon = ({ required, value, onChange }) => {
-
     const { dispatch } = useContext(FormContext)
-
     const [show, setShow] = useState(false)
 
     const closeSelect = () => {

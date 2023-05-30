@@ -1,3 +1,9 @@
+/**
+ * ## URLS
+ * En este archivo se encuentran las URLs para hacer llamados a las APIs y algunas otras.
+ * @module URLs
+ */
+
 export const githubURL = "https://github.com/melognator/project-ash"
 export const docsURL = "https://project-ash-docs.vercel.app"
 

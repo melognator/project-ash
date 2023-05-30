@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: hooks/usePokemonSpecies.jsx</title>
+    <title>JSDoc: Module: SelectEspeciePokemon</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,65 +17,103 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: hooks/usePokemonSpecies.jsx</h1>
+    <h1 class="page-title">Module: SelectEspeciePokemon</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * ## usePokemonSpecies
- * Este custom Hook devuelve una query de React Query.  
- * 
- * Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.
- * @module usePokemonSpecies
- * @example
- * const { isLoading, isError, data, error, refetch } = usePokemonSpecies()
- * console.log(data.results)
- */
+</header>
 
-import { useQuery } from "@tanstack/react-query"
-import { pokemonSpeciesURL } from "../urls"
-import { useState } from "react"
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><h2>Componente SelectEspeciePokemon</h2>
+<p>Este componente renderiza un popup para seleccionar una especie de pokemon.<br>
+Utiliza el custom hook <code>usePokemonSpecies</code>.</p></div>
+        
 
-const usePokemonSpecies = (onSuccess, onError) => {
-
-    // const [nextURL, setNextURL] = useState(null)
-    // const [prevURL, setPrevURL] = useState(null)
-    const [actualURL, setActualURL] = useState(pokemonSpeciesURL)
-
-    const getPokemonSpecies = () => (
-        fetch(actualURL)
-            .then(res => res.json())
-    )
+        
 
 
-    const query = useQuery(["getPokemonSpecies", actualURL], getPokemonSpecies, {
-        onSuccess,
-        onError,
-    })
+<dl class="details">
 
-    const prev = () => {
-        if(query.data?.previous) {
-            setActualURL(query.data.previous)
-        }
-    }
-    const next = () => {
-        if(query.data?.next) {
-            setActualURL(query.data.next)
-        }
-    }
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_Select_SelectEspeciePokemon.jsx.html">components/Select/SelectEspeciePokemon.jsx</a>, <a href="components_Select_SelectEspeciePokemon.jsx.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
-    return {query, prev, next}
-}
+        
+            <h3>Example</h3>
+            
+    <pre class="prettyprint"><code>&lt;SelectEspeciePokemon value={value} onChange={onChange} /></code></pre>
 
-export default usePokemonSpecies</code></pre>
-        </article>
-    </section>
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
