@@ -3,7 +3,7 @@
 Mini-proyecto de la materia Especialización en Front End 1.
 Trata de una página web cuya función es registrar solicitudes de atención para los pokemon de los entrenadores.
 
-Demo del proyecto: https://project-ash.vercel.app
+Demo del proyecto: https://ash.melogno.lol
 Documentación: https://project-ash-docs.vercel.app
 
 ## Instalación
