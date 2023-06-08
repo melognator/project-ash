@@ -14,6 +14,7 @@ import Input from '../Input/Input'
 import usePokemonSpecies from '../../hooks/usePokemonSpecies'
 import { capitalize } from './Select'
 import { FormContext, updatePokemon } from '../../context/ContextoFormulario'
+import { getPokemonIdFromUrl, getPokemonImageFromUrl } from '../../utils/pokemonUtils'
 
 const SelectEspeciePokemon = ({ required, value, onChange }) => {
     const { dispatch } = useContext(FormContext)
@@ -27,10 +28,11 @@ const SelectEspeciePokemon = ({ required, value, onChange }) => {
         setShow(true)
     }
 
-    const selectPokemon = (pokemon) => {
+    const selectPokemon = (pokemon, pokemonId) => {
         const fakeEvent = { target: { name: 'especiePokemon', value: pokemon } }
         onChange(fakeEvent)
         dispatch(updatePokemon(fakeEvent.target.name, fakeEvent.target.value))
+        dispatch(updatePokemon('pokemonId', pokemonId))
         closeSelect()
     }
 
@@ -50,8 +52,8 @@ const SelectEspeciePokemon = ({ required, value, onChange }) => {
                             <section className={styles.pokemonList}>
                                 {query.data?.results?.map(pokemon => (
                                     <article key={pokemon.name}>
-                                        <button title={pokemon.name} onClick={() => selectPokemon(capitalize(pokemon.name))} type='button'>
-                                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split('/')[pokemon.url.split('/').length - 2]}.png`} alt="" />
+                                        <button title={pokemon.name} onClick={() => selectPokemon(capitalize(pokemon.name), getPokemonIdFromUrl(pokemon.url))} type='button'>
+                                            <img src={getPokemonImageFromUrl(pokemon.url)} alt="" />
                                         </button>
                                     </article>
                                 ))}

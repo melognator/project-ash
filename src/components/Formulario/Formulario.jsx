@@ -10,7 +10,7 @@
  */
 
 import styles from "./Formulario.module.css"
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import entrenador from "../../assets/entrenador.png";
 import pokebola from "../../assets/pokebola.png";
@@ -23,6 +23,7 @@ import { FormContext, resetForm } from "../../context/ContextoFormulario";
 import useHealthcareRequest from "../../hooks/useHealthcareRequest";
 import FormAlert from "../Alert/FormAlert";
 import SelectEspeciePokemon from "../Select/SelectEspeciePokemon";
+import Layout from "../Layout/Layout";
 
 const Formulario = () => {
 
@@ -64,6 +65,10 @@ const Formulario = () => {
         dispatch(resetForm())
     }
 
+    useEffect(() => {
+        resetFormulario()
+    }, [])
+
     const handleSuccess = () => {
         doShowAlert()
         resetFormulario()
@@ -72,6 +77,7 @@ const Formulario = () => {
     const handleError = (e) => {
         console.log("Ha ocurrido un error: " + e)
     }
+
 
     const formMutation = useHealthcareRequest(handleSuccess, handleError)
 
@@ -83,21 +89,9 @@ const Formulario = () => {
 
     return (
         <>
-            <header className={styles.header}>
-                <Link onClick={resetFormulario} to="/" className={styles.brand}>
-                    <img src={pokebola} alt="pokebola" />
-                    <h1>Centro Pokemon de Ash</h1>
-                </Link>
-                {/* <Link className="volver" to="/">
-          Home
-        </Link> */}
-                <Link target="_blank" className={styles.link} to={docsURL}>
-                    Documentación
-                </Link>
-            </header>
             <section className={styles.formcontainer}>
                 <h2>Solicitud de atención</h2>
-                <p>
+                <p className={styles.formdescription}>
                     ¡Bienvenido! Rellena los campos para que podamos <br />encargarnos de tu querido compañero de viaje
                 </p>
                 <form onSubmit={onSubmit} className={styles.formbody}>

@@ -1,0 +1,81 @@
+.header {
+    display: flex;
+    padding: 1rem 2rem;
+    background-color: #ed5564;
+    color: whitesmoke;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
+    font-family: 'Pokemon', sans-serif;
+    text-shadow: 0.2rem 0.2rem black;
+    letter-spacing: 0.2rem;
+}
+
+@media (min-width: 1000px) {
+    .header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header h1 {
+        font-size: 1.75rem;
+    }
+}
+
+.header div {
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    width: 50px;
+    margin-right: 1.5rem;
+}
+
+.header nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    font-size: 1.2rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+
+.container {
+    color: #ed5564;
+    padding: 2rem;
+}
+
+.container h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.container p {
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+
