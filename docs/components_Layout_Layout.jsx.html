@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Alert/FormAlert.jsx</title>
+    <title>JSDoc: Source: components/Layout/Layout.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Alert/FormAlert.jsx</h1>
+    <h1 class="page-title">Source: components/Layout/Layout.jsx</h1>
 
     
 
@@ -27,46 +27,52 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * ## Componente FormAlert
- * Este componente sirve para decile al usuario que su petición fue exitosa.  
+ * ## Componente Formulario
+ * En este componente el usuario puede ingresar tanto sus datos como los de su Pokemon para poder realizar una solicitud.
  * 
- * Tiene un par de botones, uno para volver al home y otro para cerrar la alerta. De todas formas al apretar fuera de la alerta la misma se cierra.
- * 
+ * Utiliza FormContext para guardar los datos en un estado global.  
+ * Se encarga de manejar el estado de los inputs y selects.  
+ * @module Formulario
  * @example
- * &lt;FormAlert show={show} backHome={() => navigate('/')} closeAlert={() => setShow(false)} />
- * @module FormAlert
-*/
+ * &lt;Formulario />
+ */
 
+import styles from "./Layout.module.css"
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import pokebola from "../../assets/pokebola.png";
+import { docsURL } from "../../urls";
 
-import React from 'react'
-import styles from "./FormAlert.module.css"
-
-const FormAlert = ({ show, backHome, closeAlert }) => {
-
-    // Esto sirve para que no se cierre la alerta al apretar dentro de la misma.
-    const alertOnClick = (e) => {
-        e.stopPropagation()
-    }
+const Layout = ({children}) => {
 
     return (
-        &lt;div onClick={closeAlert} className={`${styles.container} ${!show ? styles.hide : ""}`}>
-            &lt;div onClick={alertOnClick} className={styles.alert}>
-                &lt;h4>Enviado!&lt;/h4>
-                &lt;p>Pronto procesaremos su solicitud :)&lt;/p>
-                &lt;div className={styles.buttons}>
-                    &lt;button onClick={backHome} className="button primary-button">
-                        Volver al Home
-                    &lt;/button>
-                    &lt;button onClick={closeAlert} className="button outlined-button">
-                        Nueva solicitud
-                    &lt;/button>
-                &lt;/div>
-            &lt;/div>
-        &lt;/div>
-    )
-}
+        &lt;>
+            &lt;header className={styles.header}>
+                &lt;Link to="/" className={styles.brand}>
+                    &lt;img src={pokebola} alt="pokebola" />
+                    &lt;h1>Centro Pokemon de Ash&lt;/h1>
+                &lt;/Link>
+                &lt;nav>
+                    &lt;Link className={styles.link} to={'/formularioIngreso'}>
+                        Formulario
+                    &lt;/Link>
+                    &lt;Link className={styles.link} to={'/solicitudes'}>
+                        Solicitudes
+                    &lt;/Link>
+                    &lt;Link target="_blank" className={styles.link} to={docsURL}>
+                        Documentación
+                    &lt;/Link>
+                &lt;/nav>
+            &lt;/header>
+            &lt;main className={styles.container}>
+                {children}
+            &lt;/main>
+        &lt;/>
+    );
+};
 
-export default FormAlert</code></pre>
+export default Layout;
+</code></pre>
         </article>
     </section>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: useHealthcareRequest</title>
+    <title>JSDoc: Source: hooks/getHealthcareRequests.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,102 +17,48 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: useHealthcareRequest</h1>
+    <h1 class="page-title">Source: hooks/getHealthcareRequests.jsx</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * ## getHealthcareRequests
+ * Este custom Hook devuelve los datos de todas las solicitudes
+ * 
+ * Puedes pasarle los parámetros onSuccess y onError para que ejecuten funciones al dar una respuesta positiva o negativa.
+ * @module getHealthcareRequests
+ * @example
+ * const { isLoading, isError, data, error, refetch } = getHealthcareRequests()
+ * console.log(data.results)
+ */
 
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><h2>useHealthcareRequest</h2>
-<p>Este custom Hook devuelve una mutación de React Query a la que podemos llamar usando <code>mutate</code> para ejecutar el POST request de una solicitud de atención.</p></div>
-        
+import { useQuery } from "@tanstack/react-query"
+import { getHealthcareRequestURL } from "../urls"
 
-        
+const getHealthcareRequests = (onSuccess, onError) => {
 
+    const fetchHealthcareRequests = () => (
+        fetch(getHealthcareRequestURL)
+            .then(res => res.json())
+    )
 
-<dl class="details">
+    const query = useQuery(["getHealthcareRequests"], fetchHealthcareRequests, {
+        onSuccess,
+        onError,
+        retry: false,
+    })
 
-    
+    return query
+}
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="hooks_useHealthcareRequest.jsx.html">hooks/useHealthcareRequest.jsx</a>, <a href="hooks_useHealthcareRequest.jsx.html#line1">line 1</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-        
-            <h3>Example</h3>
-            
-    <pre class="prettyprint"><code>const { isLoading, isError, isSuccess, mutate } = useHealthcareRequest()&lt;button onClick={mutate({ entrenador: "Ash", pokemon: "Pikachu" })}>Clickeame!&lt;/button></code></pre>
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export default getHealthcareRequests</code></pre>
+        </article>
+    </section>
 
 
 
